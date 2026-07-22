@@ -97,6 +97,19 @@ A vállalkozó heti mintája, amiből a szabad időpontok generálódnak.
 
 Karakterhossz-korlátok minden szöveges mezőn (spam/visszaélés ellen).
 
+### 3.4 `klima_opciok` — a legördülők tartalma (adminból szerkeszthető)
+A klíma márka/típus/teljesítmény legördülők értékei nem a kódban, hanem az adatbázisban vannak, így az admin bármikor bővítheti/módosíthatja őket.
+| oszlop | típus | leírás |
+|---|---|---|
+| id | uuid PK | |
+| kategoria | text | `marka` \| `tipus` \| `teljesitmeny` |
+| ertek | text | a megjelenő szöveg (pl. „Daikin") |
+| sorrend | int2 | megjelenítési sorrend |
+| aktiv | bool | ki lehet kapcsolni anélkül, hogy törölni kéne |
+
+- A publikus űrlap az **aktív** értékeket tölti be, `kategoria` + `sorrend` szerint.
+- Kezdő (seed) adat = a 8. pontban felsorolt listák.
+
 ---
 
 ## 4. Szabad időpontok kezelése (sablon + kivételek + egyedi)
@@ -117,6 +130,7 @@ Karakterhossz-korlátok minden szöveges mezőn (spam/visszaélés ellen).
   2. **„6 hétre legyártás"** gomb (a `generate_idopontok` hívása).
   3. **Naptárnézet:** az egyes sávok `szabad` / `foglalt` / `letiltva` állapota; egy kattintással letiltás/visszaengedés; **egyedi sáv** felvétele.
   4. **Foglalások listája:** minden beérkezett foglalás az összes adattal, dátum szerint rendezve/szűrve.
+  5. **Legördülők kezelése:** a klíma márka/típus/teljesítmény listák értékeinek hozzáadása, átnevezése, sorrendezése, ki/be kapcsolása (`klima_opciok` tábla).
 - Megvalósítás: statikus `admin.html` + supabase-js; a belépési munkamenet nélkül nem tölt be adatot. Az adatokhoz a hozzáférést az **RLS** is védi (lásd 9.).
 
 ---
@@ -156,7 +170,9 @@ Karakterhossz-korlátok minden szöveges mezőn (spam/visszaélés ellen).
 
 ---
 
-## 8. Legördülő listák (kezdő tartalom, az adminban bővíthető)
+## 8. Legördülő listák (kezdő/seed tartalom — az adminból bármikor szerkeszthető)
+
+Ezek a `klima_opciok` táblába kerülnek kezdő adatként; utána az admin felületen bővíthetők/módosíthatók (lásd 3.4 és 5.5).
 
 - **Márka:** Daikin, Mitsubishi Electric, Mitsubishi Heavy, Fujitsu, Panasonic, Toshiba, LG, Samsung, Gree, Midea, Haier, Hisense, Sinclair, Cooper&Hunter, Egyéb
 - **Típus:** Fali split, Multi (több beltéri egység), Kazettás (mennyezeti), Parapetes / padlón álló, Egyéb / nem tudom
@@ -170,6 +186,7 @@ Karakterhossz-korlátok minden szöveges mezőn (spam/visszaélés ellen).
 - `idopontok`: anon **csak olvashat** `szabad` + jövőbeli sávot. Írás csak belépett (admin).
 - `foglalasok`: anon **nem** olvashat és **nem** írhat közvetlenül; foglalás csak az RPC-n keresztül. Belépett admin mindent olvashat.
 - `sablon_savok`: csak belépett admin.
+- `klima_opciok`: anon **csak olvashat** aktív értékeket; írás csak belépett admin.
 - A foglalást végző `foglalas_letrehozasa` és a `generate_idopontok` `SECURITY DEFINER` függvények, bemenet-ellenőrzéssel.
 
 ### 9.2 Admin hozzáférés
@@ -203,8 +220,8 @@ A webhookos megoldás akkor is elküldi az e-mailt, ha az ügyfél böngészője
 
 ## 11. Megerősítendő a spec átnézésekor
 
-- **Legördülő listák** tartalma (8. pont) — jó így, vagy módosítsunk?
-- **Belmagasság** legördülő szövegei (6. pont) — vagy inkább szabad szöveges mező méterben?
+- **Legördülő listák** kezdő tartalma (8. pont) — a lista adminból bővíthető, de a *kezdő* értékek jók így?
+- **Belmagasság** legördülő szövegei (6. pont) — vagy inkább szabad szöveges mező méterben? (Ez fix, nem adminból szerkesztett.)
 - **Admin belépési e-mail:** `nagy.zsoltee92@gmail.com` legyen? (Ide mennek a foglalás-értesítők is.)
 - **Foglaló oldal:** külön `foglalas.html` (javasolt), a főoldali „Időpontkérés" gombok ide mutatnak; a telefon/Messenger a főoldalon marad.
 ```
