@@ -1,0 +1,11 @@
+# Operációs rendszer / szerkesztő szemét
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Ideiglenes / helyi fejlesztői fájlok
+_valogatas.html
+*.log
