@@ -518,6 +518,25 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--petrol); font-family: var(--font-display); font-weight: 700; font-size: 1rem; flex-shrink: 0;
 }
 
+/* Heti lapozó */
+.foglalo-het-nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin-bottom: 1.3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line);
+}
+.foglalo-het-cimke {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--petrol);
+  text-align: center; flex: 1;
+}
+.foglalo-het-lap {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--line-strong);
+  background: var(--surface); color: var(--petrol); font-size: 1.4rem; line-height: 1; cursor: pointer;
+  transition: border-color .15s, background .15s, opacity .15s;
+}
+.foglalo-het-lap:hover:not(:disabled) { border-color: var(--mint); background: rgba(84,168,170,.08); }
+.foglalo-het-lap:disabled { opacity: .35; cursor: not-allowed; }
+.foglalo-het-napok { display: grid; gap: 1rem; }
+
 /* Sávok napokra bontva */
 .foglalo-slotok { display: grid; gap: 1rem; }
 .foglalo-nap { border-top: 1px solid var(--line); padding-top: 1rem; }
@@ -540,10 +559,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* Űrlap */
 .foglalo-urlap { margin-top: 2rem; border-top: 2px solid var(--line); padding-top: 1.8rem; }
 .foglalo-kivalasztott {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem;
   background: rgba(84,168,170,.12); border: 1px solid rgba(84,168,170,.3);
   border-radius: var(--radius-sm); padding: .7rem 1rem; margin-bottom: 1.4rem;
   font-family: var(--font-display); font-weight: 500; color: var(--petrol);
 }
+.foglalo-modosit {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  color: var(--mint-deep); font-family: var(--font-display); font-weight: 600;
+  font-size: .9rem; text-decoration: underline; padding: 0;
+}
+.foglalo-modosit:hover { color: var(--petrol); }
 .foglalo-cim-mezok {
   border: 1px solid var(--line); border-radius: var(--radius-sm);
   padding: 1rem 1.1rem .3rem; margin-bottom: 1rem;
