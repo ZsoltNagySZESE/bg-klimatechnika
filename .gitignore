@@ -6,6 +6,9 @@ desktop.ini
 .vscode/
 .idea/
 
+# Helyi Claude Code beállítások (személyes)
+.claude/settings.local.json
+
 # Ideiglenes / helyi fejlesztői fájlok
 _valogatas.html
 *.log
