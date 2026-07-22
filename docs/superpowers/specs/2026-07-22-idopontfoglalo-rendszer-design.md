@@ -28,7 +28,7 @@ A szabad időpontokat a vállalkozó egy **jelszóval védett admin felületen**
 Statikus weboldal (HTML/CSS/JS, Vercel) + **Supabase** (adatbázis, auth, edge function) + **Resend** (e-mail). Nincs saját szerver.
 
 ```
-Publikus foglaló oldal (foglalas.html)
+Publikus foglaló szekció (a főoldalon, index.html)
         │  supabase-js (publikus kulcs)
         ▼
 Supabase RPC: foglalas_letrehozasa()   ── atomikusan lefoglalja a sávot + menti a foglalást
@@ -135,13 +135,16 @@ A klíma márka/típus/teljesítmény legördülők értékei nem a kódban, han
 
 ---
 
-## 6. Foglalás menete (publikus `foglalas.html`)
+## 6. Foglalás menete (foglalási szekció a főoldalon)
+
+> A foglalás a **főoldalon belül**, a mostani ajánlatkérő űrlap helyén jelenik meg (a „Kapcsolat"/„Időpontkérés" környékén). Ha élőben túl hosszúnak bizonyul, a szekció külön oldalra (`foglalas.html`) emelhető ugyanazzal a kóddal — a döntést élő nézet után hozzuk meg.
+
 
 1. **Naptár:** a következő 6 hét szabad, 1,5 órás sávjai (napokra bontva). Ügyfél választ egyet.
 2. **Űrlap** kitöltése:
    - **Név / cégnév**
    - **Cím** külön mezőkben: irányítószám, utca/házszám, emelet, ajtó
-   - **Belmagasság** — legördülő: „Normál (kb. 2,7 m-ig)" / „Magasabb (2,7–3,5 m)" / „Nagyon magas, galéria (3,5 m felett)" / „Nem tudom megítélni"
+   - **Belmagasság** — szabad szöveges mező (pl. „kb. 2,7 m" vagy „galérián, magasan")
    - **Telefonszám**, **E-mail**
    - **Számlázási adatok** — pipa: „Megegyezik a fenti címmel" (bepipálva átmásolja és elrejti a mezőket); eltérésnél: számlázási név, irsz, cím
    - **Adószám** (cég esetén, opcionális)
@@ -218,10 +221,10 @@ A webhookos megoldás akkor is elküldi az e-mailt, ha az ügyfél böngészője
 
 ---
 
-## 11. Megerősítendő a spec átnézésekor
+## 11. Véglegesített döntések
 
-- **Legördülő listák** kezdő tartalma (8. pont) — a lista adminból bővíthető, de a *kezdő* értékek jók így?
-- **Belmagasság** legördülő szövegei (6. pont) — vagy inkább szabad szöveges mező méterben? (Ez fix, nem adminból szerkesztett.)
-- **Admin belépési e-mail:** `nagy.zsoltee92@gmail.com` legyen? (Ide mennek a foglalás-értesítők is.)
-- **Foglaló oldal:** külön `foglalas.html` (javasolt), a főoldali „Időpontkérés" gombok ide mutatnak; a telefon/Messenger a főoldalon marad.
+- **Legördülő listák** (8. pont): a felsorolt kezdő értékekkel indulunk; adminból bővíthető/módosítható.
+- **Belmagasság:** szabad szöveges mező (nem legördülő).
+- **Admin belépési e-mail:** `nagy.zsoltee92@gmail.com` (ide jönnek a foglalás-értesítők is).
+- **Foglalás helye:** a **főoldalon belüli szekció** (a mostani ajánlatkérő űrlap helyén). Élő nézet után eldöntjük, marad-e inline, vagy külön `foglalas.html`-re kerül (ugyanaz a kód).
 ```
