@@ -390,6 +390,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     linear-gradient(160deg, var(--sky), var(--petrol));
   display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow);
 }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .photo-placeholder { color: rgba(255,255,255,.9); font-family: var(--font-display); text-align: center; font-size: 1.05rem; line-height: 1.5; }
 .about-copy h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin-bottom: 1.1rem; }
 .about-copy p { color: var(--ink-soft); margin-bottom: 1rem; }
