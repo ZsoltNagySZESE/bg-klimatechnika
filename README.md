@@ -59,24 +59,54 @@ A saját fotóidra cserélni a `styles.css`-ben a két sort kell (keresd: `.ba-a
 Fontos: a két képet **azonos szögből, azonos kivágással** fotózd (ugyanaz a klíma
 előtte–utána), hogy a csúszka elhúzásakor pontosan fedésben legyenek.
 
-## Az ajánlatkérő űrlap élesítése
+## Ajánlatkérő űrlap → Supabase (kész, működik)
 
-Jelenleg az űrlap **nem küld valódi e-mailt** — csak visszajelez a böngészőben.
-Mivel ez egy statikus oldal (nincs mögötte szerver), a legegyszerűbb egy ingyenes
-űrlap-szolgáltatás, pl. [Formspree](https://formspree.io) vagy
-[Web3Forms](https://web3forms.com). Regisztráció után kapsz egy „action" linket,
-amit az `index.html`-ben a `<form ...>` sorba kell beírni. Szólj, és beállítom.
+Az űrlap kitöltései egy **Supabase** adatbázisba mentődnek. Ez már be van kötve
+és tesztelt.
 
-Alternatíva: a Kapcsolat blokk telefon/Messenger/e-mail linkjei már most
-működnek, sok ügyfél úgyis azokat használja.
+- **Projekt:** `bg-klimatechnika` (külön a `koszorukert` projekttől)
+- **Tábla:** `ajanlatkeresek`
+- **Biztonság (RLS):** bárki **küldhet** (INSERT), de a beérkezett kéréseket
+  **csak te látod** a Supabase felületén — a publikus kulccsal nem lehet kiolvasni.
+
+A böngészőben látható kulcs (`sb_publishable_...` a `script.js`-ben) **publikus**,
+kifejezetten kliensoldalra való — nyugodtan látszódhat, nem titok.
+
+### A beérkezett ajánlatkérések megtekintése
+
+1. Lépj be a [Supabase](https://supabase.com/dashboard) fiókodba.
+2. Válaszd a **bg-klimatechnika** projektet → bal oldalt **Table Editor**.
+3. Nyisd meg az **ajanlatkeresek** táblát — itt látod az összes kitöltést.
+   (Beállítható e-mail értesítés is új sorra — szólj, ha kéred.)
+
+## Közzététel: GitHub + Vercel
+
+A projekt már **git repó** egy első commit-tal. A publikáláshoz két lépés maradt,
+amit be kell jelentkezve, a saját fiókoddal elvégezned:
+
+### 1. Feltöltés GitHubra
+1. Hozz létre egy **új, üres** repót a GitHubon (pl. `bg-klimatechnika`),
+   README/gitignore **nélkül**.
+2. A projekt mappájában futtasd (a `<felhasznalonev>` a te GitHub neved):
+   ```bash
+   git remote add origin https://github.com/<felhasznalonev>/bg-klimatechnika.git
+   git push -u origin main
+   ```
+
+### 2. Deploy Vercelre
+1. A [Vercel](https://vercel.com/new) oldalon **Add New → Project**, és importáld
+   a most feltöltött GitHub repót.
+2. Framework: **Other** (nincs build lépés, statikus oldal). Csak **Deploy**.
+3. Pár másodperc múlva élő a `...vercel.app` címen. Ezután minden `git push`
+   automatikusan újra-deploy-ol.
+
+Saját domain (pl. `bgklimatechnika.hu`) a Vercel projekt **Settings → Domains**
+alatt köthető be.
+
+> Megjegyzés: a Supabase kulcs a kódban van, így Vercelen **nem kell** külön
+> környezeti változót beállítani — egyből működik a deploy után.
 
 ## Helyi megtekintés
 
-Csak nyisd meg az `index.html`-t böngészőben (dupla kattintás).
-
-## Közzététel (ingyenes tárhelyek)
-
-A három fő fájl (`index.html`, `styles.css`, `script.js`) feltölthető bármelyik
-statikus tárhelyre: **Netlify**, **Vercel**, **Cloudflare Pages** vagy
-**GitHub Pages**. Ha kérsz, ebben is segítek — és köthető hozzá saját
-domain (pl. `klimatisztitas-gyor.hu`).
+Nyisd meg az `index.html`-t böngészőben, vagy indíts egy helyi szervert
+(`node .dev-server.js`) a `http://localhost:8731` címen.
