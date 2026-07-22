@@ -46,11 +46,12 @@
           <li><a href="#arak">Árak</a></li>
           <li><a href="#gyik">GYIK</a></li>
           <li><a href="#referenciak">Referenciák</a></li>
+          <li><a href="#foglalas">Foglalás</a></li>
           <li><a href="#kapcsolat">Kapcsolat</a></li>
         </ul>
       </nav>
 
-      <a href="#kapcsolat" class="btn btn-primary header-cta">Időpontkérés</a>
+      <a href="#foglalas" class="btn btn-primary header-cta">Időpontfoglalás</a>
     </div>
   </header>
 
@@ -64,7 +65,7 @@
           <h1 id="hero-cim">Klímatisztítás Győrben és&nbsp;környékén</h1>
           <p class="hero-lead">Tiszta levegő. Kulturált munkavégzés. Megbízható szakember.</p>
           <div class="hero-actions">
-            <a href="#kapcsolat" class="btn btn-primary btn-lg">Időpontot kérek</a>
+            <a href="#foglalas" class="btn btn-primary btn-lg">Időpontot foglalok</a>
             <a href="tel:+36309667618" class="btn btn-ghost btn-lg">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M6.5 3.5 9 4l1 3.5-2 1.5c.8 2 2.5 3.7 4.5 4.5l1.5-2 3.5 1 .5 2.5c0 1-.8 1.9-1.9 2C12.9 20.9 3.1 11.1 3.5 5.4 3.6 4.3 4.5 3.5 5.5 3.5h1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
               Telefonos egyeztetés
@@ -280,7 +281,7 @@
               <li>Szűrők tisztítása</li>
               <li>Kondenzvíz ellenőrzése</li>
             </ul>
-            <a href="#kapcsolat" class="btn btn-primary btn-block">Időpontot kérek</a>
+            <a href="#foglalas" class="btn btn-primary btn-block">Időpontot foglalok</a>
           </article>
 
           <article class="price-card">
@@ -345,7 +346,7 @@
           <h2 id="rolam-cim">Egy szakember, akinek fontos, hogy elégedett legyen</h2>
           <p>Egyéni vállalkozóként klímatisztítással foglalkozom Győrben és környékén. Számomra az igényes munkavégzés nem szlogen: minden ügyfelemnél arra törekszem, hogy a tisztítás után nyugodt szívvel, elégedetten használja a klímáját.</p>
           <p>Nem tömegtermelésben gondolkodom. Egyszerre egy otthonra figyelek, rendesen, kapkodás nélkül — mert hiszek benne, hogy a jól elvégzett munka önmagáért beszél.</p>
-          <a href="#kapcsolat" class="btn btn-primary">Beszéljünk a klímájáról</a>
+          <a href="#foglalas" class="btn btn-primary">Beszéljünk a klímájáról</a>
         </div>
       </div>
     </section>
@@ -382,6 +383,108 @@
             <p class="cite">— [Ügyfél neve], Abda</p>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ===================== IDŐPONTFOGLALÁS ===================== -->
+    <section class="section section-alt" id="foglalas" aria-labelledby="foglalas-cim">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Időpontfoglalás</p>
+          <h2 id="foglalas-cim">Foglaljon időpontot online</h2>
+          <p class="section-sub">Válasszon egy szabad időpontot a következő 6 hétből, és pár kattintással lefoglalhatja.</p>
+        </header>
+
+        <div class="foglalo" id="foglalo">
+          <!-- 1. lépés: sávok -->
+          <div class="foglalo-lepes" id="foglalo-slotok-wrap">
+            <h3 class="foglalo-cim"><span class="foglalo-num">1</span> Válasszon időpontot</h3>
+            <div id="foglalo-slotok" class="foglalo-slotok" aria-live="polite">Időpontok betöltése…</div>
+          </div>
+
+          <!-- 2. lépés: űrlap -->
+          <form class="foglalo-urlap" id="foglalo-urlap" hidden novalidate>
+            <h3 class="foglalo-cim"><span class="foglalo-num">2</span> Adja meg az adatait</h3>
+            <p class="foglalo-kivalasztott" id="foglalo-kivalasztott"></p>
+
+            <div class="field"><label for="f-nev">Név / cégnév *</label>
+              <input id="f-nev" name="nev_cegnev" required maxlength="200" autocomplete="name" /></div>
+
+            <fieldset class="foglalo-cim-mezok">
+              <legend>Cím (ahol a klíma van)</legend>
+              <div class="field-row">
+                <div class="field"><label for="f-irsz">Irányítószám *</label>
+                  <input id="f-irsz" name="irsz" required maxlength="20" inputmode="numeric" /></div>
+                <div class="field"><label for="f-cim">Utca, házszám *</label>
+                  <input id="f-cim" name="cim" required maxlength="200" /></div>
+              </div>
+              <div class="field-row">
+                <div class="field"><label for="f-emelet">Emelet</label>
+                  <input id="f-emelet" name="emelet" maxlength="50" /></div>
+                <div class="field"><label for="f-ajto">Ajtó</label>
+                  <input id="f-ajto" name="ajto" maxlength="50" /></div>
+              </div>
+            </fieldset>
+
+            <div class="field"><label for="f-belmagassag">Belmagasság / a klíma elhelyezése</label>
+              <input id="f-belmagassag" name="belmagassag" maxlength="200" placeholder="pl. kb. 2,7 m, vagy galérián magasan" /></div>
+
+            <div class="field-row">
+              <div class="field"><label for="f-telefon">Telefonszám *</label>
+                <input id="f-telefon" name="telefon" required maxlength="50" inputmode="tel" autocomplete="tel" /></div>
+              <div class="field"><label for="f-email">E-mail *</label>
+                <input id="f-email" name="email" type="email" required maxlength="200" autocomplete="email" /></div>
+            </div>
+
+            <div class="field-row">
+              <div class="field"><label for="f-marka">Klíma márkája</label>
+                <select id="f-marka" name="klima_marka" data-opcio="marka"></select></div>
+              <div class="field"><label for="f-tipus">Klíma típusa</label>
+                <select id="f-tipus" name="klima_tipus" data-opcio="tipus"></select></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="f-teljesitmeny">Klíma teljesítménye</label>
+                <select id="f-teljesitmeny" name="klima_teljesitmeny" data-opcio="teljesitmeny"></select></div>
+              <div class="field"><label for="f-darab">Hány klímát tisztítsunk? *</label>
+                <input id="f-darab" name="klima_darab" type="number" min="1" max="50" value="1" required /></div>
+            </div>
+
+            <label class="foglalo-check"><input type="checkbox" id="f-szamla-megegyezik" name="szamla_megegyezik" checked />
+              A számlázási adatok megegyeznek a fenti címmel</label>
+            <div class="foglalo-szamla" id="foglalo-szamla" hidden>
+              <div class="field"><label for="f-szamla-nev">Számlázási név</label>
+                <input id="f-szamla-nev" name="szamla_nev" maxlength="200" /></div>
+              <div class="field-row">
+                <div class="field"><label for="f-szamla-irsz">Irányítószám</label>
+                  <input id="f-szamla-irsz" name="szamla_irsz" maxlength="20" /></div>
+                <div class="field"><label for="f-szamla-cim">Cím</label>
+                  <input id="f-szamla-cim" name="szamla_cim" maxlength="200" /></div>
+              </div>
+            </div>
+            <div class="field"><label for="f-adoszam">Adószám (cég esetén)</label>
+              <input id="f-adoszam" name="adoszam" maxlength="30" /></div>
+
+            <div class="field"><label for="f-megjegyzes">Megjegyzés</label>
+              <textarea id="f-megjegyzes" name="megjegyzes" rows="3" maxlength="2000"></textarea></div>
+
+            <div class="foglalo-osszeg">
+              <span>Fizetendő a helyszínen:</span>
+              <strong id="foglalo-ar">20 000 Ft</strong>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" id="foglalo-kuld">Foglalás megerősítése</button>
+            <p class="form-status" id="foglalo-status" role="status" aria-live="polite"></p>
+            <p class="form-note">Az adatait csak a szolgáltatás teljesítéséhez használjuk. Fizetés a helyszínen.</p>
+          </form>
+
+          <!-- Siker nézet -->
+          <div class="foglalo-siker" id="foglalo-siker" hidden>
+            <div class="foglalo-siker-ikon" aria-hidden="true">✓</div>
+            <h3>Köszönjük, a foglalást rögzítettük!</h3>
+            <p id="foglalo-siker-reszlet"></p>
+            <p>Hamarosan felvesszük Önnel a kapcsolatot. Kérdés esetén hívjon: <a href="tel:+36309667618">+36 30 966 7618</a>.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -422,45 +525,11 @@
           <p class="contact-area"><span aria-hidden="true">📍</span> Győr és környéke, kb. 30 km-es körzet</p>
         </div>
 
-        <form class="contact-form" id="ajanlatForm" novalidate>
-          <h3>Ajánlatkérő űrlap</h3>
-          <div class="field">
-            <label for="nev">Név</label>
-            <input type="text" id="nev" name="nev" autocomplete="name" required />
-          </div>
-          <div class="field-row">
-            <div class="field">
-              <label for="telefon">Telefonszám</label>
-              <input type="tel" id="telefon" name="telefon" autocomplete="tel" required />
-            </div>
-            <div class="field">
-              <label for="telepules">Település</label>
-              <input type="text" id="telepules" name="telepules" required />
-            </div>
-          </div>
-          <div class="field">
-            <label for="klimaszam">Hány beltéri egység?</label>
-            <select id="klimaszam" name="klimaszam">
-              <option value="1">1 db</option>
-              <option value="2">2 db</option>
-              <option value="3">3 db</option>
-              <option value="4+">4 vagy több</option>
-              <option value="nem-tudom">Nem tudom pontosan</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="uzenet">Üzenet <span class="optional">(nem kötelező)</span></label>
-            <textarea id="uzenet" name="uzenet" rows="4" placeholder="Pl. milyen típusú a klíma, mikor lenne jó időpont…"></textarea>
-          </div>
-          <!-- Spam-csapda: ezt csak robotok töltik ki; ha kitöltötték, nem mentünk -->
-          <div class="hp-field" aria-hidden="true">
-            <label for="website">Ezt a mezőt hagyd üresen</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
-          </div>
-          <button type="submit" class="btn btn-primary btn-block btn-lg">Ajánlatot kérek</button>
-          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          <p class="form-note">Az adatait csak a kapcsolatfelvételhez használom, harmadik félnek nem adom ki.</p>
-        </form>
+        <div class="contact-foglalas">
+          <h3>Foglaljon időpontot online</h3>
+          <p>A leggyorsabb, ha rögtön kiválaszt egy szabad időpontot — pár kattintás az egész.</p>
+          <a href="#foglalas" class="btn btn-primary btn-lg">Időpont foglalása</a>
+        </div>
       </div>
     </section>
   </main>
@@ -486,6 +555,8 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/ar.js"></script>
+  <script src="js/foglalas.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
