@@ -9,6 +9,9 @@ desktop.ini
 # Helyi Claude Code beállítások (személyes)
 .claude/settings.local.json
 
+# Nagy méretű eredeti fotó (a webre optimalizált rolam.jpg-t használjuk)
+kepek/kep_sajat.png
+
 # Ideiglenes / helyi fejlesztői fájlok
 _valogatas.html
 *.log
