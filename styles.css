@@ -501,6 +501,95 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .footer-copy { font-size: .85rem; width: 100%; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.2rem; margin-top: .5rem; }
 
 /* =========================================================
+   IDŐPONTFOGLALÁS
+   ========================================================= */
+.foglalo {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.4rem); box-shadow: var(--shadow-soft);
+  max-width: 780px; margin-inline: auto;
+}
+.foglalo-cim {
+  display: flex; align-items: center; gap: .7rem; font-size: 1.25rem;
+  color: var(--petrol); margin-bottom: 1.2rem;
+}
+.foglalo-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%; background: var(--mint);
+  color: var(--petrol); font-family: var(--font-display); font-weight: 700; font-size: 1rem; flex-shrink: 0;
+}
+
+/* Sávok napokra bontva */
+.foglalo-slotok { display: grid; gap: 1rem; }
+.foglalo-nap { border-top: 1px solid var(--line); padding-top: 1rem; }
+.foglalo-nap:first-child { border-top: none; padding-top: 0; }
+.foglalo-nap-fejlec {
+  font-family: var(--font-display); font-weight: 500; color: var(--ink-soft);
+  font-size: .95rem; margin-bottom: .6rem; text-transform: capitalize;
+}
+.foglalo-nap-savok { display: flex; flex-wrap: wrap; gap: .5rem; }
+.foglalo-slot {
+  font-family: var(--font-display); font-weight: 500; font-size: 1rem;
+  padding: .6rem 1.15rem; border-radius: 999px; border: 1.5px solid var(--line-strong);
+  background: var(--surface); color: var(--petrol); cursor: pointer;
+  transition: border-color .15s, background .15s, transform .1s;
+}
+.foglalo-slot:hover { border-color: var(--mint); background: rgba(84,168,170,.08); }
+.foglalo-slot.kivalasztott { background: var(--mint); border-color: var(--mint); color: var(--petrol); }
+.foglalo-ures { color: var(--ink-soft); }
+
+/* Űrlap */
+.foglalo-urlap { margin-top: 2rem; border-top: 2px solid var(--line); padding-top: 1.8rem; }
+.foglalo-kivalasztott {
+  background: rgba(84,168,170,.12); border: 1px solid rgba(84,168,170,.3);
+  border-radius: var(--radius-sm); padding: .7rem 1rem; margin-bottom: 1.4rem;
+  font-family: var(--font-display); font-weight: 500; color: var(--petrol);
+}
+.foglalo-cim-mezok {
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem .3rem; margin-bottom: 1rem;
+}
+.foglalo-cim-mezok legend {
+  font-family: var(--font-display); font-size: .88rem; font-weight: 500;
+  color: var(--ink-soft); padding: 0 .4rem;
+}
+.foglalo-check {
+  display: flex; align-items: flex-start; gap: .6rem; margin: .4rem 0 1rem;
+  font-size: .98rem; color: var(--ink); cursor: pointer;
+}
+.foglalo-check input { margin-top: .2rem; }
+.foglalo-szamla {
+  border-left: 3px solid var(--mint); padding-left: 1rem; margin-bottom: 1rem;
+}
+.foglalo-osszeg {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  background: rgba(84,168,170,.12); border-radius: var(--radius-sm);
+  padding: .9rem 1.2rem; margin: 1.4rem 0 1.2rem;
+}
+.foglalo-osszeg span { color: var(--ink-soft); font-size: .98rem; }
+.foglalo-osszeg strong { font-family: var(--font-display); font-size: 1.7rem; color: var(--petrol); }
+
+/* Siker nézet */
+.foglalo-siker { text-align: center; padding: 1.5rem 1rem; }
+.foglalo-siker-ikon {
+  width: 64px; height: 64px; margin: 0 auto 1.1rem; border-radius: 50%;
+  background: var(--mint); color: var(--petrol);
+  display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700;
+}
+.foglalo-siker h3 { font-size: 1.5rem; color: var(--petrol); margin-bottom: .7rem; }
+.foglalo-siker p { color: var(--ink-soft); margin-bottom: .6rem; }
+.foglalo-siker a { color: var(--mint-deep); font-weight: 600; }
+
+/* Foglalás-CTA a sötét Kapcsolat szekcióban */
+.contact-foglalas {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius); padding: clamp(1.6rem, 3vw, 2.2rem);
+  display: flex; flex-direction: column; align-items: flex-start; gap: .8rem;
+}
+.contact-foglalas h3 { font-family: var(--font-display); color: #fff; font-size: 1.35rem; }
+.contact-foglalas p { color: rgba(220,239,236,.8); }
+.contact-foglalas .btn { margin-top: .4rem; }
+
+/* =========================================================
    RESPONSIVE
    ========================================================= */
 @media (max-width: 940px) {
