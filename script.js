@@ -8,6 +8,16 @@
   var evEl = document.getElementById("ev");
   if (evEl) evEl.textContent = new Date().getFullYear();
 
+  /* ---------- Lebegő foglalás gomb: elrejtés, ha a foglaló szakasz látszik ---------- */
+  var fab = document.getElementById("foglalasFab");
+  var foglalasSzekcio = document.getElementById("foglalas");
+  if (fab && foglalasSzekcio && "IntersectionObserver" in window) {
+    var fabObs = new IntersectionObserver(function (entries) {
+      fab.classList.toggle("rejtve", entries[0].isIntersecting);
+    }, { threshold: 0.15 });
+    fabObs.observe(foglalasSzekcio);
+  }
+
   /* ---------- Mobil menü ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var navList = document.getElementById("nav-list");
