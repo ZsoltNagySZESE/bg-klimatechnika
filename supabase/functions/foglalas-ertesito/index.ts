@@ -12,10 +12,14 @@ const LOGO_URL = "https://bg-klimatechnika.vercel.app/kepek/logo-icon-white.png"
 
 function pad(n: number) { return (n < 10 ? "0" : "") + n; }
 function huDatum(iso: string) {
-  const d = new Date(iso);
-  const nap = ["vasárnap", "hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat"][d.getDay()];
-  const ho = ["jan.", "febr.", "márc.", "ápr.", "máj.", "jún.", "júl.", "aug.", "szept.", "okt.", "nov.", "dec."][d.getMonth()];
-  return `${d.getFullYear()}. ${ho} ${d.getDate()}. (${nap}) ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  // Europe/Budapest helyi idő szerint formázunk (a függvény UTC-ben fut).
+  const p = new Intl.DateTimeFormat("hu-HU", {
+    timeZone: "Europe/Budapest",
+    year: "numeric", month: "short", day: "numeric",
+    weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false,
+  }).formatToParts(new Date(iso));
+  const g = (t: string) => (p.find((x) => x.type === t)?.value ?? "");
+  return `${g("year")}. ${g("month")} ${g("day")}. (${g("weekday")}) ${g("hour")}:${g("minute")}`;
 }
 function icsDatum(d: Date) {
   return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + "T" + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + "00Z";
