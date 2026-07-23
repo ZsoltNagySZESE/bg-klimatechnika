@@ -8,14 +8,20 @@
   var evEl = document.getElementById("ev");
   if (evEl) evEl.textContent = new Date().getFullYear();
 
-  /* ---------- Lebegő foglalás gomb: elrejtés, ha a foglaló szakasz látszik ---------- */
+  /* ---------- Lebegő foglalás gomb: csak akkor, ha semmilyen más foglalás-gomb/szakasz nem látszik ---------- */
   var fab = document.getElementById("foglalasFab");
-  var foglalasSzekcio = document.getElementById("foglalas");
-  if (fab && foglalasSzekcio && "IntersectionObserver" in window) {
+  if (fab && "IntersectionObserver" in window) {
+    var fabCelok = [];
+    var foglalasSzekcio = document.getElementById("foglalas");
+    if (foglalasSzekcio) fabCelok.push(foglalasSzekcio);
+    document.querySelectorAll('.hero-actions a[href="#foglalas"], .price-card a[href="#foglalas"], .about-copy a[href="#foglalas"], .contact-foglalas a[href="#foglalas"]')
+      .forEach(function (el) { fabCelok.push(el); });
+    var fabLathatok = new Set();
     var fabObs = new IntersectionObserver(function (entries) {
-      fab.classList.toggle("rejtve", entries[0].isIntersecting);
-    }, { threshold: 0.15 });
-    fabObs.observe(foglalasSzekcio);
+      entries.forEach(function (e) { if (e.isIntersecting) fabLathatok.add(e.target); else fabLathatok.delete(e.target); });
+      fab.classList.toggle("rejtve", fabLathatok.size > 0);
+    }, { threshold: 0 });
+    fabCelok.forEach(function (el) { fabObs.observe(el); });
   }
 
   /* ---------- Mobil menü ---------- */
