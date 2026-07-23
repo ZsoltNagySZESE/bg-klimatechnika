@@ -18,6 +18,29 @@
   function huIdo(iso) { var d = new Date(iso); return d.getFullYear() + ". " + p2(d.getMonth() + 1) + ". " + p2(d.getDate()) + ". " + p2(d.getHours()) + ":" + p2(d.getMinutes()); }
   function ft(n) { return (n == null ? "-" : Number(n).toLocaleString("hu-HU") + " Ft"); }
 
+  // Google Naptár „esemény hozzáadása" link a foglalás adataiból (90 perces esemény)
+  function gcalDatum(d) { return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + "00Z"; }
+  function gcalLink(f) {
+    if (!f.idopontok) return "";
+    var start = new Date(f.idopontok.kezdes);
+    var end = new Date(start.getTime() + 90 * 60000);
+    var cim = [f.irsz, f.cim].filter(Boolean).join(" ") + (f.emelet ? (", " + f.emelet + ". em.") : "") + (f.ajto ? (" " + f.ajto + ". ajtó") : "");
+    var reszletek = [
+      "Ügyfél: " + (f.nev_cegnev || ""),
+      "Telefon: " + (f.telefon || ""),
+      "E-mail: " + (f.email || ""),
+      "Klíma: " + ([f.klima_marka, f.klima_tipus, f.klima_teljesitmeny].filter(Boolean).join(" · ") || "-") + " (" + f.klima_darab + " db)",
+      "Ár: " + ft(f.ar) + " (fizetés a helyszínen)",
+      f.belmagassag ? ("Belmagasság: " + f.belmagassag) : null,
+      f.megjegyzes ? ("Megjegyzés: " + f.megjegyzes) : null
+    ].filter(Boolean).join("\n");
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent("Klímatisztítás – " + (f.nev_cegnev || ""))
+      + "&dates=" + gcalDatum(start) + "/" + gcalDatum(end)
+      + "&location=" + encodeURIComponent(cim)
+      + "&details=" + encodeURIComponent(reszletek);
+  }
+
   /* ---------- Nézetváltás + auth ---------- */
   function mutatNezet(bejelentkezve, user) {
     loginView.hidden = bejelentkezve;
@@ -90,7 +113,9 @@
             + '<dt>Klíma</dt><dd>' + (esc([f.klima_marka, f.klima_tipus, f.klima_teljesitmeny].filter(Boolean).join(" · ")) || "-") + '</dd>'
             + '<dt>Számlázás</dt><dd>' + (szamla || "-") + (f.adoszam ? (" · adószám: " + esc(f.adoszam)) : "") + '</dd>'
             + (f.megjegyzes ? ('<dt>Megjegyzés</dt><dd>' + esc(f.megjegyzes) + '</dd>') : "")
-            + '</dl></article>';
+            + '</dl>'
+            + (gcalLink(f) ? '<div class="admin-foglalas-labarc"><a class="admin-naptar-gomb" href="' + gcalLink(f) + '" target="_blank" rel="noopener">📅 Hozzáadás a Google Naptárhoz</a></div>' : "")
+            + '</article>';
         }).join("");
       });
   }

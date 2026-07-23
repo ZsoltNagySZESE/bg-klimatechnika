@@ -60,6 +60,14 @@
 .admin-foglalas-adatok dt { color: var(--ink-soft); font-family: var(--font-display); font-weight: 500; }
 .admin-foglalas-adatok dd { margin: 0; }
 .admin-foglalas-adatok a { color: var(--mint-deep); }
+.admin-foglalas-labarc { margin-top: 1rem; padding-top: .9rem; border-top: 1px solid var(--line); }
+.admin-naptar-gomb {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--font-display); font-weight: 500; font-size: .9rem;
+  padding: .5rem 1rem; border-radius: 999px; border: 1.5px solid var(--line-strong);
+  color: var(--petrol); background: var(--surface); transition: border-color .15s, background .15s;
+}
+.admin-naptar-gomb:hover { border-color: var(--mint); background: rgba(84,168,170,.08); }
 
 /* ---------- Eszközsor ---------- */
 .admin-eszkozok { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
