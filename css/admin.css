@@ -3,6 +3,9 @@
    ========================================================= */
 .admin-body { background: var(--bg); min-height: 100vh; }
 
+/* A hidden attribútum mindig győzzön a display szabályok felett */
+.admin-login[hidden], .admin-app[hidden] { display: none !important; }
+
 /* ---------- Belépés ---------- */
 .admin-login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
 .admin-login-card {
