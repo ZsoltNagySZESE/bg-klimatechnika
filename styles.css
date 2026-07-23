@@ -615,10 +615,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .contact-foglalas p { color: rgba(220,239,236,.8); }
 .contact-foglalas .btn { margin-top: .4rem; }
 
-/* Lebegő időpontfoglalás gomb */
+/* Lebegő időpontfoglalás gomb — csak telefonos nézetben (a fejléc gombja ott rejtve) */
 .foglalas-fab {
   position: fixed; right: clamp(1rem, 4vw, 2rem); bottom: clamp(1rem, 4vw, 2rem); z-index: 90;
-  display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.4rem; border-radius: 999px;
+  display: none; align-items: center; gap: .5rem; padding: .85rem 1.4rem; border-radius: 999px;
   background: var(--mint); color: var(--petrol);
   font-family: var(--font-display); font-weight: 600; font-size: 1rem;
   box-shadow: 0 12px 28px -8px rgba(14,59,60,.5);
@@ -629,6 +629,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .foglalas-fab { transition: opacity .2s ease; }
   .foglalas-fab.rejtve { transform: none; }
+}
+/* Csak ott jelenjen meg, ahol a fejléc CTA elrejtőzik (≤760px) */
+@media (max-width: 760px) {
+  .foglalas-fab { display: inline-flex; }
 }
 @media (max-width: 480px) {
   .foglalas-fab { left: 1rem; right: 1rem; bottom: 1rem; justify-content: center; }
