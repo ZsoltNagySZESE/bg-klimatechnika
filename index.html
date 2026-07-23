@@ -134,10 +134,12 @@
               <legend>Cím (ahol a klíma van)</legend>
               <div class="field-row">
                 <div class="field"><label for="f-irsz">Irányítószám *</label>
-                  <input id="f-irsz" name="irsz" required maxlength="20" inputmode="numeric" /></div>
-                <div class="field"><label for="f-cim">Utca, házszám *</label>
-                  <input id="f-cim" name="cim" required maxlength="200" /></div>
+                  <input id="f-irsz" name="irsz" required maxlength="20" inputmode="numeric" autocomplete="postal-code" /></div>
+                <div class="field"><label for="f-telepules">Település / város *</label>
+                  <input id="f-telepules" name="telepules" required maxlength="200" autocomplete="address-level2" /></div>
               </div>
+              <div class="field"><label for="f-cim">Utca, házszám *</label>
+                <input id="f-cim" name="cim" required maxlength="200" autocomplete="address-line1" /></div>
               <div class="field-row">
                 <div class="field"><label for="f-emelet">Emelet</label>
                   <input id="f-emelet" name="emelet" maxlength="50" /></div>

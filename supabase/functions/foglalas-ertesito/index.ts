@@ -94,7 +94,7 @@ serve(async (req) => {
   const kezdes = body.idopont_kezdes;
   if (!f || !kezdes) return new Response("Bad request", { status: 400 });
 
-  const cim = [f.irsz, f.cim].filter(Boolean).join(" ")
+  const cim = [f.irsz, f.telepules, f.cim].filter(Boolean).join(" ")
     + (f.emelet ? `, ${f.emelet}. em.` : "") + (f.ajto ? ` ${f.ajto}. ajtó` : "");
   const idopontSzoveg = huDatum(kezdes);
   const klimaSzoveg = (esc([f.klima_marka, f.klima_tipus, f.klima_teljesitmeny].filter(Boolean).join(" / ")) || "-") + ` (${esc(f.klima_darab)} db)`;

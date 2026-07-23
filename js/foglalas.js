@@ -167,7 +167,7 @@
     }
     var f = urlap;
     if (!f.nev_cegnev.value.trim() || !f.telefon.value.trim() || !f.email.value.trim()
-        || !f.irsz.value.trim() || !f.cim.value.trim()) {
+        || !f.irsz.value.trim() || !f.telepules.value.trim() || !f.cim.value.trim()) {
       statusEl.textContent = "Kérjük, töltse ki a csillaggal jelölt mezőket.";
       statusEl.classList.add("err");
       return;
@@ -181,6 +181,7 @@
       p_idopont_id: selectedSlotId,
       p_nev_cegnev: f.nev_cegnev.value.trim(),
       p_irsz: f.irsz.value.trim(),
+      p_telepules: f.telepules.value.trim(),
       p_cim: f.cim.value.trim(),
       p_emelet: f.emelet.value.trim(),
       p_ajto: f.ajto.value.trim(),

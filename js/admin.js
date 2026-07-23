@@ -24,7 +24,7 @@
     if (!f.idopontok) return "";
     var start = new Date(f.idopontok.kezdes);
     var end = new Date(start.getTime() + 90 * 60000);
-    var cim = [f.irsz, f.cim].filter(Boolean).join(" ") + (f.emelet ? (", " + f.emelet + ". em.") : "") + (f.ajto ? (" " + f.ajto + ". ajtó") : "");
+    var cim = [f.irsz, f.telepules, f.cim].filter(Boolean).join(" ") + (f.emelet ? (", " + f.emelet + ". em.") : "") + (f.ajto ? (" " + f.ajto + ". ajtó") : "");
     var reszletek = [
       "Ügyfél: " + (f.nev_cegnev || ""),
       "Telefon: " + (f.telefon || ""),
@@ -106,7 +106,7 @@
             + '<span class="admin-foglalas-ar">' + ft(f.ar) + " · " + esc(f.klima_darab) + ' db</span></div>'
             + '<p class="admin-foglalas-nev">' + esc(f.nev_cegnev) + '</p>'
             + '<dl class="admin-foglalas-adatok">'
-            + '<dt>Cím</dt><dd>' + esc([f.irsz, f.cim].filter(Boolean).join(" ")) + (f.emelet ? (", " + esc(f.emelet) + ". em.") : "") + (f.ajto ? (" " + esc(f.ajto) + ". ajtó") : "") + '</dd>'
+            + '<dt>Cím</dt><dd>' + esc([f.irsz, f.telepules, f.cim].filter(Boolean).join(" ")) + (f.emelet ? (", " + esc(f.emelet) + ". em.") : "") + (f.ajto ? (" " + esc(f.ajto) + ". ajtó") : "") + '</dd>'
             + '<dt>Belmagasság</dt><dd>' + esc(f.belmagassag || "-") + '</dd>'
             + '<dt>Telefon</dt><dd><a href="tel:' + esc(f.telefon) + '">' + esc(f.telefon) + '</a></dd>'
             + '<dt>E-mail</dt><dd><a href="mailto:' + esc(f.email) + '">' + esc(f.email) + '</a></dd>'
