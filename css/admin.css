@@ -1,0 +1,127 @@
+/* =========================================================
+   Admin felület stílusok (a styles.css változóira épít)
+   ========================================================= */
+.admin-body { background: var(--bg); min-height: 100vh; }
+
+/* ---------- Belépés ---------- */
+.admin-login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+.admin-login-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: clamp(1.6rem, 4vw, 2.6rem); width: 100%; max-width: 380px;
+}
+.admin-login-card h1 {
+  font-family: var(--font-display); font-size: 1.4rem; color: var(--petrol);
+  margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: .2rem;
+}
+.admin-login-card h1 span { font-size: .85rem; font-weight: 400; color: var(--ink-soft); }
+
+/* ---------- Alkalmazás váz ---------- */
+.admin-fejlec {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  background: var(--petrol); color: #eafffa; padding: 1rem clamp(1rem, 4vw, 2rem);
+}
+.admin-fejlec strong { font-family: var(--font-display); font-size: 1.05rem; }
+.admin-fejlec-jobb { display: flex; align-items: center; gap: 1rem; }
+.admin-user { font-size: .9rem; color: rgba(220,239,236,.8); }
+.admin-fejlec .btn-ghost { color: #eafffa; border-color: rgba(255,255,255,.3); padding: .5rem 1rem; }
+.admin-fejlec .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+.admin-tabok {
+  display: flex; flex-wrap: wrap; gap: .3rem; padding: 0 clamp(1rem, 4vw, 2rem);
+  background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5;
+}
+.admin-tab {
+  font-family: var(--font-display); font-weight: 500; font-size: .95rem; color: var(--ink-soft);
+  background: none; border: none; border-bottom: 3px solid transparent; padding: .9rem .9rem; cursor: pointer;
+}
+.admin-tab:hover { color: var(--petrol); }
+.admin-tab.aktiv { color: var(--petrol); border-bottom-color: var(--mint); }
+
+.admin-fo { max-width: 900px; margin: 0 auto; padding: clamp(1.2rem, 4vw, 2rem); }
+.admin-panel { display: none; }
+.admin-panel.aktiv { display: block; }
+.admin-ures { color: var(--ink-soft); }
+.admin-info { color: var(--ink-soft); font-size: .92rem; margin-bottom: 1.1rem; background: var(--surface-2); padding: .8rem 1rem; border-radius: var(--radius-sm); }
+.admin-uzenet { color: var(--mint-deep); font-family: var(--font-display); font-size: .9rem; }
+
+/* ---------- Foglalás-kártyák ---------- */
+.admin-foglalas {
+  background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--mint);
+  border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-bottom: 1rem; box-shadow: var(--shadow-soft);
+}
+.admin-foglalas-fej { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: .3rem; }
+.admin-foglalas-idopont { font-family: var(--font-display); font-weight: 600; color: var(--petrol); }
+.admin-foglalas-ar { font-family: var(--font-display); font-weight: 600; color: var(--mint-deep); }
+.admin-foglalas-nev { font-size: 1.1rem; font-weight: 600; margin-bottom: .8rem; }
+.admin-foglalas-adatok { display: grid; grid-template-columns: max-content 1fr; gap: .3rem 1rem; margin: 0; font-size: .95rem; }
+.admin-foglalas-adatok dt { color: var(--ink-soft); font-family: var(--font-display); font-weight: 500; }
+.admin-foglalas-adatok dd { margin: 0; }
+.admin-foglalas-adatok a { color: var(--mint-deep); }
+
+/* ---------- Eszközsor ---------- */
+.admin-eszkozok { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+.admin-egyedi { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.admin-egyedi input, .admin-egyedi select {
+  font-family: var(--font-body); font-size: .95rem; padding: .55rem .7rem;
+  border: 1.5px solid var(--line-strong); border-radius: 8px; background: var(--surface);
+}
+.admin-eszkozok .btn { padding: .55rem 1.1rem; }
+
+/* ---------- Időpont-sorok ---------- */
+.admin-idopont {
+  display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: .6rem .9rem; margin-bottom: .45rem;
+}
+.admin-idopont-ido { font-family: var(--font-display); color: var(--petrol); min-width: 12rem; }
+.admin-idopont-badge {
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; padding: .18rem .6rem;
+  border-radius: 999px; background: var(--surface-2); color: var(--ink-soft);
+}
+.admin-idopont.statusz-foglalt { border-left: 4px solid #c0392b; }
+.admin-idopont.statusz-foglalt .admin-idopont-badge { background: #fbe6e3; color: #b23222; }
+.admin-idopont.statusz-letiltva { opacity: .7; }
+.admin-idopont-gombok { margin-left: auto; display: flex; gap: .4rem; }
+
+.admin-mini {
+  font-family: var(--font-display); font-size: .82rem; font-weight: 500; cursor: pointer;
+  padding: .35rem .8rem; border-radius: 999px; border: 1.5px solid var(--line-strong);
+  background: var(--surface); color: var(--petrol);
+}
+.admin-mini:hover { border-color: var(--mint); }
+.admin-mini-torol { color: #b23222; border-color: rgba(178,50,34,.3); }
+.admin-mini-torol:hover { border-color: #b23222; background: rgba(178,50,34,.06); }
+
+/* ---------- Sablon ---------- */
+.admin-sablon-nap {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding: .7rem 0; border-bottom: 1px solid var(--line);
+}
+.admin-sablon-nap > strong { font-family: var(--font-display); color: var(--petrol); min-width: 6rem; }
+.admin-sablon-savok { display: flex; flex-wrap: wrap; gap: .5rem; }
+.admin-sablon-sav {
+  display: inline-flex; align-items: center; gap: .4rem; font-family: var(--font-display);
+  background: rgba(84,168,170,.12); border: 1px solid rgba(84,168,170,.3); color: var(--petrol);
+  padding: .3rem .3rem .3rem .7rem; border-radius: 999px;
+}
+.admin-x { border: none; background: rgba(0,0,0,.06); color: var(--ink-soft); cursor: pointer; width: 20px; height: 20px; border-radius: 50%; font-size: 1rem; line-height: 1; }
+.admin-x:hover { background: #b23222; color: #fff; }
+
+/* ---------- Legördülők ---------- */
+.admin-opcio-kat {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; box-shadow: var(--shadow-soft);
+}
+.admin-opcio-kat h3 { font-family: var(--font-display); color: var(--petrol); margin-bottom: .8rem; }
+.admin-opcio-sor { display: flex; align-items: center; gap: .8rem; padding: .45rem 0; border-bottom: 1px dashed var(--line); }
+.admin-opcio-sor:last-of-type { border-bottom: none; }
+.admin-opcio-sor.inaktiv .admin-opcio-ertek { color: var(--ink-soft); text-decoration: line-through; }
+.admin-opcio-ertek { flex: 1; }
+.admin-opcio-gombok { display: flex; gap: .4rem; }
+.admin-opcio-kat .admin-egyedi { margin-top: 1rem; }
+
+@media (max-width: 620px) {
+  .admin-idopont-ido { min-width: 0; }
+  .admin-foglalas-adatok { grid-template-columns: 1fr; gap: .1rem; }
+  .admin-foglalas-adatok dt { margin-top: .5rem; }
+}

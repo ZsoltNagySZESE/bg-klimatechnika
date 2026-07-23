@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin – BG Klímatechnika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+  <!-- Belépés -->
+  <div class="admin-login" id="admin-login" hidden>
+    <form class="admin-login-card" id="admin-login-form">
+      <h1>BG Klímatechnika<span>Admin belépés</span></h1>
+      <div class="field"><label for="admin-email">E-mail</label>
+        <input id="admin-email" type="email" autocomplete="username" required /></div>
+      <div class="field"><label for="admin-jelszo">Jelszó</label>
+        <input id="admin-jelszo" type="password" autocomplete="current-password" required /></div>
+      <button type="submit" class="btn btn-primary btn-block btn-lg" id="admin-belep">Belépés</button>
+      <p class="form-status" id="admin-login-hiba" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <!-- Admin alkalmazás -->
+  <div class="admin-app" id="admin-app" hidden>
+    <header class="admin-fejlec">
+      <strong>BG Klímatechnika – Admin</strong>
+      <div class="admin-fejlec-jobb">
+        <span id="admin-user" class="admin-user"></span>
+        <button class="btn btn-ghost" id="admin-kilep">Kilépés</button>
+      </div>
+    </header>
+    <nav class="admin-tabok">
+      <button class="admin-tab aktiv" data-tab="foglalasok">Foglalások</button>
+      <button class="admin-tab" data-tab="idopontok">Időpontok</button>
+      <button class="admin-tab" data-tab="sablon">Heti sablon</button>
+      <button class="admin-tab" data-tab="opciok">Legördülők</button>
+    </nav>
+    <main class="admin-fo">
+      <section class="admin-panel aktiv" id="panel-foglalasok"><div id="foglalasok-lista">Betöltés…</div></section>
+      <section class="admin-panel" id="panel-idopontok"></section>
+      <section class="admin-panel" id="panel-sablon"></section>
+      <section class="admin-panel" id="panel-opciok"></section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
