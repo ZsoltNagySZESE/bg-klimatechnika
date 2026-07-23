@@ -155,6 +155,13 @@
     arFrissit();
   }
 
+  /* ---------- Kötelező mezők + hibajelzés törlése gépeléskor ---------- */
+  var KOTELEZO_MEZOK = ["nev_cegnev", "irsz", "telepules", "cim", "telefon", "email"];
+  KOTELEZO_MEZOK.forEach(function (nev) {
+    var mezo = urlap[nev];
+    if (mezo) mezo.addEventListener("input", function () { mezo.classList.remove("mezo-hiba"); });
+  });
+
   /* ---------- Beküldés ---------- */
   urlap.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -166,10 +173,17 @@
       return;
     }
     var f = urlap;
-    if (!f.nev_cegnev.value.trim() || !f.telefon.value.trim() || !f.email.value.trim()
-        || !f.irsz.value.trim() || !f.telepules.value.trim() || !f.cim.value.trim()) {
-      statusEl.textContent = "Kérjük, töltse ki a csillaggal jelölt mezőket.";
+    var elsoHibas = null;
+    KOTELEZO_MEZOK.forEach(function (nev) {
+      var mezo = f[nev];
+      var ures = !mezo.value.trim();
+      mezo.classList.toggle("mezo-hiba", ures);
+      if (ures && !elsoHibas) elsoHibas = mezo;
+    });
+    if (elsoHibas) {
+      statusEl.textContent = "Kérjük, töltse ki a pirossal jelölt kötelező mezőket.";
       statusEl.classList.add("err");
+      elsoHibas.focus();
       return;
     }
     var kuldBtn = document.getElementById("foglalo-kuld");
@@ -191,6 +205,7 @@
       p_szamla_megegyezik: f.szamla_megegyezik.checked,
       p_szamla_nev: f.szamla_nev.value.trim(),
       p_szamla_irsz: f.szamla_irsz.value.trim(),
+      p_szamla_telepules: f.szamla_telepules.value.trim(),
       p_szamla_cim: f.szamla_cim.value.trim(),
       p_adoszam: f.adoszam.value.trim(),
       p_klima_marka: f.klima_marka.value,

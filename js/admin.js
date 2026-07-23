@@ -100,7 +100,7 @@
         el.innerHTML = res.data.map(function (f) {
           var idopont = f.idopontok ? huIdo(f.idopontok.kezdes) : "-";
           var szamla = f.szamla_megegyezik ? "a szolgáltatási címmel megegyező"
-            : esc([f.szamla_nev, f.szamla_irsz, f.szamla_cim].filter(Boolean).join(", "));
+            : esc([f.szamla_nev, f.szamla_irsz, f.szamla_telepules, f.szamla_cim].filter(Boolean).join(", "));
           return '<article class="admin-foglalas">'
             + '<div class="admin-foglalas-fej"><span class="admin-foglalas-idopont">' + idopont + '</span>'
             + '<span class="admin-foglalas-ar">' + ft(f.ar) + " · " + esc(f.klima_darab) + ' db</span></div>'

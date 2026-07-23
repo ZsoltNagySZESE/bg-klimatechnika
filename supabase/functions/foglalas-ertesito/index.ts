@@ -109,7 +109,7 @@ serve(async (req) => {
     ["Belmagasság", esc(f.belmagassag || "-")],
     ["Klíma", klimaSzoveg],
   ];
-  if (!f.szamla_megegyezik) ownerSorok.push(["Számlázás", esc([f.szamla_nev, f.szamla_irsz, f.szamla_cim].filter(Boolean).join(", "))]);
+  if (!f.szamla_megegyezik) ownerSorok.push(["Számlázás", esc([f.szamla_nev, f.szamla_irsz, f.szamla_telepules, f.szamla_cim].filter(Boolean).join(", "))]);
   if (f.adoszam) ownerSorok.push(["Adószám", esc(f.adoszam)]);
   if (f.megjegyzes) ownerSorok.push(["Megjegyzés", esc(f.megjegyzes)]);
 
